@@ -1,0 +1,2928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выручай-комната — Уютный клуб настольных игр для всех</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        /* ИДЕАЛЬНАЯ ТЁМНАЯ ЦВЕТОВАЯ СХЕМА С ЗЕЛЕНЫМИ АКЦЕНТАМИ */
+        :root {
+            --primary: #0A1929; /* Глубокий тёмно-синий */
+            --primary-light: #1A2B3C;
+            --primary-dark: #05121F;
+            --secondary: #00C9A7; /* Изумрудный с бирюзовым оттенком */
+            --secondary-light: #00E6C3;
+            --secondary-dark: #00A88B;
+            --accent: #9B5DE5; /* Мягкий фиолетовый */
+            --accent-light: #B58AFF;
+            --accent-dark: #7A3FC9;
+            --gold: #FEE440; /* Светлое золото */
+            --light: #F1FAFF; /* Мягкий светлый голубой */
+            --light-gray: #2C3E50;
+            --dark: #0C1A2B;
+            --text: #E8F1F5;
+            --text-light: #A0B8CC;
+            --gradient-primary: linear-gradient(135deg, #0A1929 0%, #1A2B3C 100%);
+            --gradient-secondary: linear-gradient(135deg, #00C9A7 0%, #00E6C3 100%);
+            --gradient-accent: linear-gradient(135deg, #9B5DE5 0%, #B58AFF 100%);
+            --gradient-gold: linear-gradient(135deg, #FEE440 0%, #FFD700 100%);
+            --gradient-dark: linear-gradient(135deg, #05121F 0%, #0C1A2B 100%);
+            --gradient-hero: linear-gradient(135deg, #05121F 0%, #0A1929 50%, #1A2B3C 100%);
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 25px 60px rgba(0, 201, 167, 0.25);
+            --shadow-light: 0 10px 25px rgba(0, 201, 167, 0.15);
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --border-radius-xl: 32px;
+            --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-quick: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--primary);
+            overflow-x: hidden;
+            position: relative;
+            background: var(--gradient-primary);
+            min-height: 100vh;
+            letter-spacing: 0.3px;
+        }
+
+        /* Динамический градиентный фон */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--gradient-hero);
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(0, 201, 167, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 85% 75%, rgba(155, 93, 229, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(254, 228, 64, 0.04) 0%, transparent 50%);
+            animation: gradientShift 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.05) rotate(1deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.7;
+            }
+        }
+
+        /* Частицы */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatParticle 20s linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        section {
+            padding: 140px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(0, 201, 167, 0.4);
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Jost', sans-serif;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            border: none;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateZ(-1px);
+            transition: var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--gradient-secondary);
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 201, 167, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 201, 167, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 201, 167, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 201, 167, 0.4);
+        }
+
+        .btn-nav {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        .btn-block {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Сложные анимации */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+            66% {
+                transform: translateY(-8px) rotate(-2deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 201, 167, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(0, 201, 167, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 201, 167, 0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(0, 201, 167, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(0, 201, 167, 0.9));
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Навигация - совершенный дизайн */
+        .navbar {
+            background-color: rgba(10, 25, 41, 0.85);
+            backdrop-filter: blur(15px) saturate(180%);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(0, 201, 167, 0.15);
+        }
+
+        .navbar.scrolled {
+            padding: 5px 0;
+            background-color: rgba(10, 25, 41, 0.95);
+            backdrop-filter: blur(25px) saturate(200%);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition-bounce);
+            position: relative;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            animation: float 8s ease-in-out infinite;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 201, 167, 0.5));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 300;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition-quick);
+            position: relative;
+            padding: 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu a:not(.btn)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-secondary);
+            border-radius: 1px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 0 10px rgba(0, 201, 167, 0.5);
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition-quick);
+            z-index: 1001;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .menu-toggle:hover {
+            color: var(--secondary);
+            background: rgba(0, 201, 167, 0.1);
+        }
+
+        /* Главный экран - совершенный дизайн */
+        .hero {
+            background: radial-gradient(circle at 20% 30%, rgba(0, 201, 167, 0.1) 0%, transparent 40%), 
+                        radial-gradient(circle at 80% 70%, rgba(155, 93, 229, 0.1) 0%, transparent 40%), 
+                        var(--gradient-hero);
+            color: var(--text);
+            text-align: center;
+            padding: 220px 0 150px;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 201, 167, 0.1);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(0, 201, 167, 0.05) 50%, transparent 100%);
+            animation: shimmer 3s infinite linear;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+            font-weight: 800;
+            line-height: 1.1;
+            animation: fadeInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title span {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.6;
+            font-family: 'Jost', sans-serif;
+            animation: fadeInUp 1.2s 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            animation: fadeInUp 1.2s 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 3s infinite, pulse 2s infinite;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-7px);
+            }
+        }
+
+        .hero-scroll a {
+            color: var(--secondary);
+            font-size: 2rem;
+            text-decoration: none;
+            background: rgba(10, 25, 41, 0.7);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 201, 167, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .hero-scroll a:hover {
+            background: rgba(0, 201, 167, 0.2);
+            transform: scale(1.2);
+            border-color: var(--secondary);
+        }
+
+        .hero-scroll a i {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Услуги */
+        .services {
+            background: transparent;
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            padding: 50px 40px;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 201, 167, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 201, 167, 0.5));
+        }
+
+        .service-card h3 {
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* О клубе */
+        .about {
+            background: transparent;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(0, 201, 167, 0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-family: 'Jost', sans-serif;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            gap: 25px;
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+            padding: 30px 20px;
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-bounce);
+            border: 1px solid rgba(0, 201, 167, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .stat:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
+            text-shadow: 0 5px 15px rgba(0, 201, 167, 0.3);
+        }
+
+        .stat-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            position: relative;
+            height: 550px;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition-smooth);
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 201, 167, 0.2), transparent);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .about-image:hover::before {
+            opacity: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Наши мастера */
+        .masters {
+            background: transparent;
+            position: relative;
+        }
+
+        .masters::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(254, 228, 64, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .masters-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            color: var(--text-light);
+            font-family: 'Jost', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .masters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .master-card {
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition-bounce);
+            position: relative;
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(10px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transform-style: preserve-3d;
+        }
+
+        .master-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .master-header {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .master-header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(10, 25, 41, 0.9), transparent);
+            z-index: 1;
+        }
+
+        .master-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .master-card:hover .master-header img {
+            transform: scale(1.15);
+        }
+
+        .master-type {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: var(--gradient-secondary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .master-body {
+            padding: 40px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .master-name {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .master-specialty {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .master-desc {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.7;
+            font-family: 'Jost', sans-serif;
+            flex-grow: 1;
+        }
+
+        .master-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 201, 167, 0.1);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 201, 167, 0.2);
+            transition: var(--transition-quick);
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 201, 167, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 201, 167, 0.2);
+        }
+
+        .master-footer {
+            margin-top: auto;
+        }
+
+        /* Галерея */
+        .gallery-section {
+            background: transparent;
+            position: relative;
+        }
+
+        .gallery-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            height: 280px;
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition-bounce);
+            cursor: pointer;
+            border: 1px solid rgba(0, 201, 167, 0.15);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(10, 25, 41, 0.95), transparent);
+            color: white;
+            padding: 30px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Правила */
+        .rules {
+            background: transparent;
+            position: relative;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .rule-card {
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            padding: 50px 40px;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .rule-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .rule-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .rule-icon {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            animation: float 6s ease-in-out infinite;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 201, 167, 0.5));
+        }
+
+        .rule-card h3 {
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .rule-card p {
+            color: var(--text-light);
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Бронирование */
+        .booking {
+            background: transparent;
+            color: var(--text);
+            position: relative;
+        }
+
+        .booking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 201, 167, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .booking .section-title {
+            color: var(--text);
+        }
+
+        .booking-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            transition: var(--transition-bounce);
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.9), rgba(10, 25, 41, 0.95));
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: var(--shadow-light);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-right: 25px;
+            margin-top: 5px;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .contact-item h4 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+            font-family: 'Jost', sans-serif;
+        }
+
+        .booking-cta {
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            padding: 50px 40px;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(10px);
+            transition: var(--transition-bounce);
+        }
+
+        .booking-cta:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: 0 30px 70px rgba(0, 201, 167, 0.3);
+        }
+
+        .booking-cta h3 {
+            color: var(--text);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .booking-cta p {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        /* Контакты */
+        .contacts-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 60px;
+        }
+
+        .contact-details h3 {
+            color: var(--text);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .contact-details h3 i {
+            margin-right: 20px;
+            color: var(--secondary);
+            font-size: 1.8rem;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 25px;
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition-bounce);
+            width: fit-content;
+            box-shadow: var(--shadow-light);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(5px);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(145deg, rgba(0, 201, 167, 0.2), rgba(10, 25, 41, 0.9));
+            color: var(--secondary);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .social-link i {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .contacts-map {
+            height: 400px;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+        }
+
+        .map-placeholder {
+            background: var(--gradient-dark);
+            border-radius: var(--border-radius-xl);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 201, 167, 0.1), transparent);
+        }
+
+        .map-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gradient-secondary);
+            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 0 0 20px rgba(0, 201, 167, 0.2);
+            animation: pulse 2s infinite, rotate 20s linear infinite;
+            z-index: 2;
+        }
+
+        .map-placeholder p {
+            margin-top: 140px;
+            text-align: center;
+            padding: 0 40px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        /* Футер */
+        .footer {
+            background: linear-gradient(to bottom, var(--primary-dark), #05101E);
+            color: var(--text);
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(0, 201, 167, 0.15);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-secondary);
+            box-shadow: 0 0 20px rgba(0, 201, 167, 0.5);
+        }
+
+        .footer::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 100%, rgba(0, 201, 167, 0.05) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition-quick);
+            font-weight: 400;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .footer-links a::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: var(--transition-quick);
+            color: var(--secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 20px;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+
+        .footer-copyright {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 60px;
+            border-top: 1px solid rgba(0, 201, 167, 0.2);
+            color: var(--text-light);
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-copyright p {
+            margin-bottom: 10px;
+        }
+
+        /* Страницы мастеров */
+        .master-page {
+            padding-top: 150px;
+            background: transparent;
+            min-height: 100vh;
+            display: none;
+        }
+
+        .master-page .container {
+            max-width: 1200px;
+        }
+
+        .master-header-page {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .master-avatar {
+            width: 100%;
+            max-width: 350px;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 3px solid rgba(0, 201, 167, 0.3);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .master-avatar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .master-avatar img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+
+        .master-avatar:hover img {
+            transform: scale(1.1);
+        }
+
+        .master-info h1 {
+            color: var(--text);
+            margin-bottom: 15px;
+            font-size: 3rem;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .master-specialty-page {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .master-bio {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .master-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .master-stat {
+            text-align: center;
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            padding: 25px 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(5px);
+            transition: var(--transition-bounce);
+            min-width: 120px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .master-stat:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: var(--shadow);
+        }
+
+        .master-stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .master-stat-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 2.2rem;
+            color: var(--text);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .section-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-secondary);
+        }
+
+        .master-gallery {
+            margin-bottom: 80px;
+        }
+
+        .master-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .master-gallery-item {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            height: 220px;
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition-bounce);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+        }
+
+        .master-gallery-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 201, 167, 0.3);
+        }
+
+        .master-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .master-gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .master-campaigns {
+            margin-bottom: 80px;
+        }
+
+        .campaigns-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .campaigns-list li {
+            margin-bottom: 25px;
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            border-radius: var(--border-radius-lg);
+            border-left: 5px solid var(--secondary);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(5px);
+            transition: var(--transition-bounce);
+            box-shadow: var(--shadow-light);
+        }
+
+        .campaigns-list li:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: var(--shadow);
+        }
+
+        .campaign-title {
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .campaign-desc {
+            color: var(--text-light);
+            font-family: 'Jost', sans-serif;
+            line-height: 1.7;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 60px;
+            transition: var(--transition-bounce);
+            font-size: 1.2rem;
+            position: relative;
+            padding: 15px 30px;
+            background: linear-gradient(145deg, rgba(26, 43, 60, 0.8), rgba(10, 25, 41, 0.9));
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 201, 167, 0.15);
+            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .back-button:hover {
+            gap: 25px;
+            color: var(--secondary-light);
+            transform: translateY(-5px) scale(1.05);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: var(--shadow);
+        }
+
+        /* Плавное появление элементов с Intersection Observer */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-secondary);
+            border-radius: 7px;
+            border: 3px solid var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-light);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .master-header-page {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .master-avatar {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .container {
+                max-width: 1100px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-content, .booking-content, .contacts-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .master-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .services-grid, .masters-grid, .rules-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 100px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-wrap: wrap;
+                padding: 15px 20px;
+            }
+            
+            .menu-toggle {
+                display: block;
+                order: 2;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+                order: 3;
+                gap: 20px;
+                background: linear-gradient(145deg, rgba(26, 43, 60, 0.95), rgba(10, 25, 41, 0.98));
+                padding: 30px;
+                border-radius: var(--border-radius-lg);
+                border: 1px solid rgba(0, 201, 167, 0.2);
+                backdrop-filter: blur(20px);
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 180px 0 120px;
+                min-height: auto;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .master-gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .master-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .master-stat {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .service-card, .rule-card, .master-body, .booking-cta {
+                padding: 30px 20px;
+            }
+            
+            .about-image {
+                height: 400px;
+            }
+            
+            .hero {
+                padding: 160px 0 100px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        /* Эффект параллакса для некоторых элементов */
+        .parallax-element {
+            transform: translateZ(0);
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Лоадер (для плавного появления контента) */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-hero);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(0, 201, 167, 0.2);
+            border-top: 5px solid var(--secondary);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+            margin-bottom: 30px;
+        }
+
+        .loader-text {
+            color: var(--text);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Эффект свечения для важных элементов */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-secondary);
+            border-radius: inherit;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 0.7;
+        }
+
+        /* Эффект печатающегося текста */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--secondary);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary) }
+        }
+    </style>
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">ЗАГРУЗКА ВЫРУЧАЙ-КОМНАТЫ...</div>
+        </div>
+    </div>
+
+    <!-- Динамический фон -->
+    <div class="gradient-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Главная страница -->
+    <div id="main-page">
+        <!-- Навигация -->
+        <nav class="navbar" id="navbar">
+            <div class="container">
+                <a href="#home" class="logo">
+                    <div class="logo-icon">🎲</div>
+                    <div class="logo-text">
+                        <span class="logo-title">Выручай-комната</span>
+                        <span class="logo-subtitle">Уютный клуб настольных игр</span>
+                    </div>
+                </a>
+                
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#about">О клубе</a></li>
+                    <li><a href="#masters">Мастера</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#rules">Правила</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#booking" class="btn btn-primary btn-nav glow-effect">Записаться</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Главный экран -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Выручай<span>-комната</span></h1>
+                    <p class="hero-subtitle">Уютное пространство, где каждый найдёт игру по душе, компанию для вечера и атмосферу настоящего отдыха. Место, где знакомства превращаются в дружбу, а игры — в незабываемые истории.</p>
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-primary glow-effect">Наши услуги</a>
+                        <a href="#masters" class="btn btn-secondary glow-effect">Наши мастера</a>
+                    </div>
+                </div>
+                <div class="hero-scroll">
+                    <a href="#services"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Услуги -->
+        <section class="services" id="services">
+            <div class="container">
+                <h2 class="section-title reveal">Что вас здесь <span class="highlight">выручит?</span></h2>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">🎮</div>
+                        <h3>Игры для всех</h3>
+                        <p>Более 200 настольных игр на любой вкус: от простых семейных до сложных стратегий. Приходите один или с друзьями — мы подберём идеальную игру для вашей компании.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🎭</div>
+                        <h3>D&D и ролевые игры</h3>
+                        <p>Регулярные кампании и мастер-классы по D&D. Наши мастера помогут создать персонажа и погрузиться в захватывающий мир фэнтези, даже если вы никогда не играли раньше.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">🤝</div>
+                        <h3>Дружеская атмосфера</h3>
+                        <p>Здесь вас ждут в любой день недели. Мы создали пространство, где комфортно и новичкам, и опытным игрокам. Приходите знакомиться, общаться и играть!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- О клубе -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text reveal">
+                        <h2 class="section-title">Наша <span class="highlight">философия</span></h2>
+                        <p>«Выручай-комната» — это наследник духа «Эчпочмак клуба» с новой энергией. Мы верим, что настольные игры — это не просто развлечение, а способ объединять людей, создавать дружеские связи и спасать вечера от скуки.</p>
+                        <p>Наши две комнаты — «Игровая» и «Уютная» — созданы для разных форматов отдыха. В одной кипят страсти за игровым столом, в другой — идут тихие беседы и мастер-классы.</p>
+                        <div class="stats">
+                            <div class="stat reveal">
+                                <span class="stat-number">200+</span>
+                                <span class="stat-text">игр в коллекции</span>
+                            </div>
+                            <div class="stat reveal">
+                                <span class="stat-number">2</span>
+                                <span class="stat-text">уютные комнаты</span>
+                            </div>
+                            <div class="stat reveal">
+                                <span class="stat-number">7/7</span>
+                                <span class="stat-text">дней в неделю</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image reveal">
+                        <img src="https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Интерьер клуба">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Наши мастера -->
+        <section class="masters" id="masters">
+            <div class="container">
+                <h2 class="section-title reveal">Наши <span class="highlight">мастера</span></h2>
+                <p class="masters-intro reveal">Трое опытных мастеров D&D, каждый со своим уникальным стилем и специализацией. Все они создают захватывающие миры и незабываемые приключения для наших игроков.</p>
+                <div class="masters-grid">
+                    <!-- Мастер Гослинг -->
+                    <div class="master-card reveal" onclick="showMasterPage('gosling')">
+                        <div class="master-header">
+                            <img src="photo_2026-01-15_07-21-50.jpg" alt="Мастер Гослинг">
+                            <div class="master-type">Мастер D&D</div>
+                        </div>
+                        <div class="master-body">
+                            <h3 class="master-name">Мастер Гослинг</h3>
+                            <div class="master-specialty">Специалист по эпическим кампаниям в Авернусе</div>
+                            <p class="master-desc">Мастер с 8-летним опытом проведения кампаний в стиле тёмного фэнтези и эпических приключений. Специализируется на кампаниях в Авернусе и Зариксиде.</p>
+                            <div class="master-skills">
+                                <span class="skill-tag">Авернус</span>
+                                <span class="skill-tag">Эпические кампании</span>
+                                <span class="skill-tag">Тёмное фэнтези</span>
+                            </div>
+                        </div>
+                        <div class="master-footer">
+                            <button class="btn btn-primary btn-block glow-effect"><i class="fas fa-dragon"></i> Подробнее о мастере</button>
+                        </div>
+                    </div>
+
+                    <!-- Мастер Фантазер -->
+                    <div class="master-card reveal" onclick="showMasterPage('fantazer')">
+                        <div class="master-header">
+                            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мастер Фантазер">
+                            <div class="master-type">Мастер D&D</div>
+                        </div>
+                        <div class="master-body">
+                            <h3 class="master-name">Мастер Фантазер</h3>
+                            <div class="master-specialty">Создатель волшебных миров и магических приключений</div>
+                            <p class="master-desc">Мастер, который превращает каждую сессию в волшебное путешествие. Специализируется на создании уникальных магических систем и загадочных миров.</p>
+                            <div class="master-skills">
+                                <span class="skill-tag">Магия</span>
+                                <span class="skill-tag">Создание миров</span>
+                                <span class="skill-tag">Загадки</span>
+                            </div>
+                        </div>
+                        <div class="master-footer">
+                            <button class="btn btn-primary btn-block glow-effect"><i class="fas fa-dragon"></i> Подробнее о мастере</button>
+                        </div>
+                    </div>
+
+                    <!-- Мастер Андрей -->
+                    <div class="master-card reveal" onclick="showMasterPage('andrey')">
+                        <div class="master-header">
+                            <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мастер Андрей">
+                            <div class="master-type">Мастер D&D</div>
+                        </div>
+                        <div class="master-body">
+                            <h3 class="master-name">Мастер Андрей</h3>
+                            <div class="master-specialty">Эксперт по интригам и политическим кампаниям</div>
+                            <p class="master-desc">Мастер, который создаёт сложные политические интриги и драматические сюжеты. Специализируется на кампаниях с глубокими персонажами и моральными дилеммами.</p>
+                            <div class="master-skills">
+                                <span class="skill-tag">Интриги</span>
+                                <span class="skill-tag">Политика</span>
+                                <span class="skill-tag">Драма</span>
+                            </div>
+                        </div>
+                        <div class="master-footer">
+                            <button class="btn btn-primary btn-block glow-effect"><i class="fas fa-dragon"></i> Подробнее о мастере</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея -->
+        <section class="gallery-section" id="gallery">
+            <div class="container">
+                <h2 class="section-title reveal">Наша <span class="highlight">галерея</span></h2>
+                <p class="masters-intro reveal">Лучшие моменты из жизни клуба: игровые вечера, турниры, мастер-классы и просто уютные посиделки.</p>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Галерея будет заполнена через JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Правила -->
+        <section class="rules" id="rules">
+            <div class="container">
+                <h2 class="section-title reveal">Правила <span class="highlight">клуба</span></h2>
+                <div class="rules-grid">
+                    <div class="rule-card reveal">
+                        <div class="rule-icon">🤝</div>
+                        <h3>Уважайте друг друга</h3>
+                        <p>Мы создаём дружескую атмосферу для всех, независимо от опыта и предпочтений. Уважайте других игроков и их выбор.</p>
+                    </div>
+                    <div class="rule-card reveal">
+                        <div class="rule-icon">🧹</div>
+                        <h3>Берегите игры</h3>
+                        <p>Бережно относитесь к игровым компонентам. После игры приводите всё в порядок для следующих посетителей.</p>
+                    </div>
+                    <div class="rule-card reveal">
+                        <div class="rule-icon">😊</div>
+                        <h3>Дружеская атмосфера</h3>
+                        <p>Мы против дискриминации и токсичного поведения. Здесь каждый может чувствовать себя комфортно и безопасно.</p>
+                    </div>
+                    <div class="rule-card reveal">
+                        <div class="rule-icon">📞</div>
+                        <h3>Предупредите об отмене</h3>
+                        <p>Если вы не можете прийти, предупредите нас заранее, чтобы мы могли предложить место другим.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Бронирование -->
+        <section class="booking" id="booking">
+            <div class="container">
+                <div class="booking-content">
+                    <div class="booking-text reveal">
+                        <h2 class="section-title">Готовы <span class="highlight">присоединиться?</span></h2>
+                        <p>Забронируйте стол для игры или запишитесь на ближайшее мероприятие. Мы поможем подобрать игру по вашему вкусу и настроению.</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Часы работы</h4>
+                                    <p>Пн-Чт: 16:00-23:00</p>
+                                    <p>Пт-Вс: 14:00-01:00</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Телефон для брони</h4>
+                                    <p>+7 (XXX) XXX-XX-XX</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-cta reveal">
+                        <h3>Запись через Google Формы</h3>
+                        <p>Для бронирования стола или записи на мероприятие используйте нашу Google Форму. Заполните её, и мы свяжемся с вами для подтверждения.</p>
+                        <a href="https://forms.google.com" target="_blank" class="btn btn-primary btn-block glow-effect">
+                            <i class="fab fa-google"></i> Перейти к форме записи
+                        </a>
+                        <p style="font-size: 0.9rem; margin-top: 20px; color: var(--text-light);">Форма откроется в новом окне</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="contacts" id="contacts">
+            <div class="container">
+                <h2 class="section-title reveal">Как нас <span class="highlight">найти</span></h2>
+                <div class="contacts-content">
+                    <div class="contacts-info reveal">
+                        <div class="contact-details">
+                            <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+                            <p>ул. Игровая, 42, офис 7</p>
+                            <p>Метро "Спасская", 3 минуты пешком</p>
+                            
+                            <h3><i class="fas fa-envelope"></i> Контакты</h3>
+                            <p>Телефон: +7 (XXX) XXX-XX-XX</p>
+                            <p>Email: info@vyruchai-room.ru</p>
+                            
+                            <h3><i class="fas fa-users"></i> Социальные сети</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-vk"></i> ВКонтакте</a>
+                                <a href="#" class="social-link"><i class="fab fa-telegram"></i> Telegram-канал</a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacts-map reveal">
+                        <div class="map-placeholder">
+                            <div class="map-marker">
+                                <i class="fas fa-map-pin"></i>
+                            </div>
+                            <p>Здесь будет карта с нашим местоположением</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <div class="logo-icon">🎲</div>
+                        <div class="logo-text">
+                            <span class="logo-title">Выручай-комната</span>
+                            <span class="logo-subtitle">Уютный клуб настольных игр</span>
+                        </div>
+                        <p style="margin-top: 20px; color: var(--text-light); font-size: 0.9rem; line-height: 1.6;">Наследники традиций Эчпочмак клуба. Создаем уникальные игровые впечатления с 2023 года.</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#home">Главная</a>
+                        <a href="#services">Услуги</a>
+                        <a href="#about">О клубе</a>
+                        <a href="#masters">Мастера</a>
+                        <a href="#gallery">Галерея</a>
+                        <a href="#rules">Правила</a>
+                        <a href="#contacts">Контакты</a>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text); margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;">Будьте в курсе</h4>
+                        <p style="color: var(--text-light); margin-bottom: 25px; line-height: 1.6;">Подпишитесь на наши соцсети, чтобы не пропустить новые события.</p>
+                        <div style="display: flex; gap: 20px;">
+                            <a href="#" style="color: var(--secondary); font-size: 1.5rem; transition: var(--transition-quick);"><i class="fab fa-vk"></i></a>
+                            <a href="#" style="color: var(--secondary); font-size: 1.5rem; transition: var(--transition-quick);"><i class="fab fa-telegram"></i></a>
+                            <a href="#" style="color: var(--secondary); font-size: 1.5rem; transition: var(--transition-quick);"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>© 2023 Выручай-комната. Наследники Эчпочмак клуба.</p>
+                    <p>Создано с ❤️ для всех, кто ищет уютное место для игр.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Страница мастера Гослинга -->
+    <div id="master-gosling-page" class="master-page" style="display: none;">
+        <div class="container">
+            <a href="#masters" class="back-button glow-effect" onclick="showMainPage()">
+                <i class="fas fa-arrow-left"></i> Назад к мастерам
+            </a>
+            
+            <div class="master-header-page">
+                <div class="master-avatar reveal">
+                    <img src="photo_2026-01-14_23-44-17.jpg" alt="Мастер Гослинг">
+                </div>
+                <div class="master-info">
+                    <h1 class="reveal">Мастер Гослинг</h1>
+                    <span class="master-specialty-page reveal">Специалист по эпическим кампаниям в Авернусе</span>
+                    <p class="master-bio reveal">Мастер Гослинг ведёт D&D кампании уже более 8 лет. Начал свой путь в настольных ролевых играх ещё в 2015 году и с тех пор провёл более 60 кампаний. Специализируется на эпическом фэнтези и тёмных приключениях в Авернусе. Его кампании известны глубоким погружением в мир, проработанными персонажами и напряжённой атмосферой, в которой каждый выбор имеет значение.</p>
+                    <div class="master-stats">
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">8+</span>
+                            <span class="master-stat-text">лет опыта</span>
+                        </div>
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">60+</span>
+                            <span class="master-stat-text">проведённых кампаний</span>
+                        </div>
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">150+</span>
+                            <span class="master-stat-text">довольных игроков</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="master-gallery">
+                <h2 class="section-subtitle reveal">Фотогалерея</h2>
+                <div class="master-gallery-grid">
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мастер Гослинг ведёт игру">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Игровой стол">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Карты и материалы">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1606166325681-6b8c56dc4b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Группа игроков">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="master-campaigns">
+                <h2 class="section-subtitle reveal">Активные кампании</h2>
+                <ul class="campaigns-list">
+                    <li class="reveal">
+                        <div class="campaign-title">"Нисхождение в Авернус"</div>
+                        <div class="campaign-desc">Эпическая кампания в стиле тёмного фэнтези для опытных игроков. Действие происходит в Девяти Кругах Ада, где игрокам предстоит столкнуться с демоническими силами, интригами архидьяволов и вечными муками. Кампания полна моральных дилемм, политических интриг и эпических сражений с силами зла.</div>
+                    </li>
+                    <li class="reveal">
+                        <div class="campaign-title">"Свет Зариксиды"</div>
+                        <div class="campaign-desc">Приключенческая кампания в загадочном мире Зариксиды, где магия пронизывает всё сущее. Игрокам предстоит исследовать древние руины, разгадывать тайны забытых цивилизаций и противостоять тёмным культам, стремящимся пробудить древнее зло. Особое внимание уделяется исследованию мира и взаимодействию с его уникальной магической системой.</div>
+                    </li>
+                    <li class="reveal">
+                        <div class="campaign-title">"Поворот колеса Фортуны"</div>
+                        <div class="campaign-desc">Динамичная кампания с элементами авантюры и неожиданными поворотами сюжета. Игроки становятся членами гильдии искателей приключений, выполняющих контракты по всему миру. Каждая сессия — новое приключение с уникальными задачами, от расследований загадочных исчезновений до охоты на опасных чудовищ.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница мастера Фантазера -->
+    <div id="master-fantazer-page" class="master-page" style="display: none;">
+        <div class="container">
+            <a href="#masters" class="back-button glow-effect" onclick="showMainPage()">
+                <i class="fas fa-arrow-left"></i> Назад к мастерам
+            </a>
+            
+            <div class="master-header-page">
+                <div class="master-avatar reveal">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мастер Фантазер">
+                </div>
+                <div class="master-info">
+                    <h1 class="reveal">Мастер Фантазер</h1>
+                    <span class="master-specialty-page reveal">Создатель волшебных миров и магических приключений</span>
+                    <p class="master-bio reveal">Мастер Фантазер увлекается D&D уже 7 лет. Его страсть — создание уникальных магических миров, полных чудес и загадок. Каждая его кампания — это настоящее произведение искусства, где каждая деталь продумана до мелочей. Он специализируется на кампаниях с глубокой магической системой, где игроки могут не просто использовать заклинания, а исследовать саму природу магии.</p>
+                    <div class="master-stats">
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">7+</span>
+                            <span class="master-stat-text">лет опыта</span>
+                        </div>
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">45+</span>
+                            <span class="master-stat-text">проведённых кампаний</span>
+                        </div>
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">120+</span>
+                            <span class="master-stat-text">довольных игроков</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="master-gallery">
+                <h2 class="section-subtitle reveal">Фотогалерея</h2>
+                <div class="master-gallery-grid">
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мастер Фантазер ведёт игру">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Магические артефакты">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Игровой вечер">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1606166325681-6b8c56dc4b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Коллекция игр">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="master-campaigns">
+                <h2 class="section-subtitle reveal">Активные кампании</h2>
+                <ul class="campaigns-list">
+                    <li class="reveal">
+                        <div class="campaign-title">"Хроники Эльдарина"</div>
+                        <div class="campaign-desc">Эпическая кампания в мире, где магия является живой сущностью. Игроки становятся частью древнего пророчества, которое может изменить судьбу всего магического мира. Особое внимание уделяется исследованию уникальной магической системы, где заклинания можно не только использовать, но и создавать, комбинируя различные элементы.</div>
+                    </li>
+                    <li class="reveal">
+                        <div class="campaign-title">"Тайны Лунного Леса"</div>
+                        <div class="campaign-desc">Загадочная кампания в волшебном лесу, где время течёт иначе, а деревья хранят древние секреты. Игрокам предстоит разгадать тайну исчезновения Лунных Фей и восстановить баланс между миром людей и миром магии. Кампания полна загадок, мистических существ и неожиданных поворотов.</div>
+                    </li>
+                    <li class="reveal">
+                        <div class="campaign-title">"Академия Чародеев"</div>
+                        <div class="campaign-desc">Кампания для начинающих игроков, действие которой происходит в престижной академии магии. Игроки становятся студентами-чародеями, изучающими различные школы магии. Каждая сессия — это новое испытание, от экзаменов по зельеварению до защиты диссертации по теории заклинаний.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница мастера Андрея -->
+    <div id="master-andrey-page" class="master-page" style="display: none;">
+        <div class="container">
+            <a href="#masters" class="back-button glow-effect" onclick="showMainPage()">
+                <i class="fas fa-arrow-left"></i> Назад к мастерам
+            </a>
+            
+            <div class="master-header-page">
+                <div class="master-avatar reveal">
+                    <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мастер Андрей">
+                </div>
+                <div class="master-info">
+                    <h1 class="reveal">Мастер Андрей</h1>
+                    <span class="master-specialty-page reveal">Эксперт по интригам и политическим кампаниям</span>
+                    <p class="master-bio reveal">Мастер Андрей ведёт D&D кампании 6 лет, специализируясь на сложных политических интригах и драматических сюжетах. Его кампании известны глубокими персонажами, моральными дилеммами и сложными взаимоотношениями между NPC. Он создаёт миры, где каждое решение имеет последствия, а друзья могут стать врагами в зависимости от обстоятельств.</p>
+                    <div class="master-stats">
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">6+</span>
+                            <span class="master-stat-text">лет опыта</span>
+                        </div>
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">40+</span>
+                            <span class="master-stat-text">проведённых кампаний</span>
+                        </div>
+                        <div class="master-stat reveal">
+                            <span class="master-stat-number">100+</span>
+                            <span class="master-stat-text">довольных игроков</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="master-gallery">
+                <h2 class="section-subtitle reveal">Фотогалерея</h2>
+                <div class="master-gallery-grid">
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1606166325681-6b8c56dc4b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Мастер Андрей ведёт игру">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Политические интриги">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1578269174936-2709b6aeb913?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Драматические сцены">
+                    </div>
+                    <div class="master-gallery-item reveal">
+                        <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Игровые материалы">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="master-campaigns">
+                <h2 class="section-subtitle reveal">Активные кампании</h2>
+                <ul class="campaigns-list">
+                    <li class="reveal">
+                        <div class="campaign-title">"Трон из Клинков"</div>
+                        <div class="campaign-desc">Политическая кампания в королевстве, раздираемом междоусобными войнами. Игроки становятся ключевыми фигурами в борьбе за власть, где каждый союзник может стать предателем, а каждый враг — потенциальным союзником. Особое внимание уделяется дипломатии, интригам и сложным моральным выборам.</div>
+                    </li>
+                    <li class="reveal">
+                        <div class="campaign-title">"Тени Прошлого"</div>
+                        <div class="campaign-desc">Драматическая кампания, где прошлое персонажей играет ключевую роль в сюжете. Каждый игрок имеет свою предысторию, которая постепенно раскрывается и влияет на развитие событий. Кампания полна эмоциональных моментов, сложных отношений и неожиданных откровений.</div>
+                    </li>
+                    <li class="reveal">
+                        <div class="campaign-title">"Город Шепотов"</div>
+                        <div class="campaign-desc">Детективная кампания в огромном городе, полном преступлений и коррупции. Игроки становятся следователями, расследующими серию загадочных убийств, которые могут быть связаны с высшими эшелонами власти. Каждая улика важна, каждый свидетель может быть замешан в преступлении.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация при загрузке
+        window.addEventListener('load', function() {
+            // Скрываем прелоадер
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                // Запускаем анимации после загрузки
+                initAnimations();
+            }, 1000);
+            
+            // Инициализация галереи
+            renderGallery();
+            
+            // Инициализация частиц
+            createParticles();
+        });
+
+        // Мобильное меню
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navbar = document.getElementById('navbar');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            // Добавляем анимацию кнопки
+            menuToggle.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Эффект при скролле навигации
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Активация reveal элементов
+            revealOnScroll();
+            
+            // Параллакс эффект для некоторых элементов
+            updateParallax();
+        });
+
+        // Данные для галереи
+        const galleryData = [
+            {
+                id: 1,
+                src: "photo_2025-05-28_22-18-11.jpg",
+                title: "Игровой вечер в клубе",
+                desc: "Компания друзей играет в настольные игры"
+            },
+            {
+                id: 2,
+                src: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Турнир по D&D",
+                desc: "Напряжённая игра за столом"
+            },
+            {
+                id: 3,
+                src: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Уютный клубный интерьер",
+                desc: "Наш зал для игр и общения"
+            },
+            {
+                id: 4,
+                src: "photo_2026- 01 - 15_07 - 22-04.jpg",
+                title: "Мастер-класс по D&D",
+                desc: "Обучение новым играм"
+            },
+            {
+                id: 5,
+                src: "https://images.unsplash.com/photo-1578269174936-2709b6aeb913?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                title: "Коллекция настольных игр",
+                desc: "Часть нашей игротеки"
+            },
+            {
+                id: 6,
+                src: "photo_2026- 01 - 15_06 - 49 - 28.jpg",
+                title: "D&D кампания",
+                desc: "Ролевая игра с мастером"
+            }
+        ];
+
+        // Функция для отрисовки галереи
+        function renderGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+            
+            galleryData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item reveal';
+                galleryItem.style.animationDelay = `${index * 0.1}s`;
+                
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.title}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>${item.title}</h4>
+                        <p>${item.desc}</p>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Создание частиц для фона
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Случайные размеры и позиции
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 15;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Случайный цвет (зеленый, фиолетовый или золотой)
+                const colors = [
+                    'rgba(0, 201, 167, 0.3)',
+                    'rgba(155, 93, 229, 0.3)',
+                    'rgba(254, 228, 64, 0.3)'
+                ];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Функции для переключения страниц
+        function showMasterPage(masterId) {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById(`master-${masterId}-page`).style.display = 'block';
+            window.scrollTo(0, 0);
+            
+            // Активируем reveal элементы на странице мастера
+            setTimeout(() => {
+                revealOnScroll();
+            }, 100);
+        }
+
+        function showMainPage() {
+            document.getElementById('main-page').style.display = 'block';
+            document.getElementById('master-gosling-page').style.display = 'none';
+            document.getElementById('master-fantazer-page').style.display = 'none';
+            document.getElementById('master-andrey-page').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+
+        // Анимация появления элементов при скролле
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Инициализация анимаций
+        function initAnimations() {
+            revealOnScroll();
+            
+            // Добавляем анимации для элементов с задержкой
+            document.querySelectorAll('.service-card, .master-card, .rule-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Анимация заголовка героя
+            const heroTitle = document.querySelector('.hero-title');
+            heroTitle.style.animation = 'fadeInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards';
+            
+            // Анимация подзаголовка героя
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            heroSubtitle.style.animation = 'fadeInUp 1.2s 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards';
+            
+            // Анимация кнопок героя
+            const heroButtons = document.querySelector('.hero-buttons');
+            heroButtons.style.animation = 'fadeInUp 1.2s 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards';
+        }
+
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-menu') && !e.target.closest('.menu-toggle') && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Параллакс эффект
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            parallaxElements.forEach(element => {
+                const rate = element.getAttribute('data-rate') || 0.5;
+                const offset = scrolled * rate;
+                element.style.transform = `translateY(${offset}px)`;
+            });
+        }
+
+        // Эффект свечения для элементов при наведении
+        document.querySelectorAll('.btn, .service-card, .master-card, .rule-card, .social-link').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 0 30px rgba(0, 201, 167, 0.3)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#home') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else if (document.querySelector(targetId)) {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Эффект печатающегося текста для заголовка
+        const heroTitle = document.querySelector('.hero-title');
+        const originalText = heroTitle.innerHTML;
+        
+        // Анимация фона
+        let bgAnimationFrame;
+        function animateBackground() {
+            const time = Date.now() * 0.001;
+            const bg = document.querySelector('.gradient-bg::before');
+            if (bg) {
+                const x = Math.sin(time * 0.1) * 10;
+                const y = Math.cos(time * 0.1) * 10;
+                bg.style.transform = `translate(${x}px, ${y}px)`;
+            }
+            bgAnimationFrame = requestAnimationFrame(animateBackground);
+        }
+
+        // Запускаем анимацию фона
+        animateBackground();
+
+        // Останавливаем анимацию при скрытии вкладки
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                cancelAnimationFrame(bgAnimationFrame);
+            } else {
+                animateBackground();
+            }
+        });
+
+        // Дополнительные эффекты при загрузке
+        window.addEventListener('DOMContentLoaded', () => {
+            // Анимация появления контента
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 500);
+            
+            // Добавляем класс для анимированных элементов
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.classList.add('reveal');
+            });
+        });
+
+        // Эффект нажатия на кнопки
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Анимация при наведении на карточки
+        document.querySelectorAll('.service-card, .master-card, .rule-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '';
+            });
+        });
+
+        // Интерактивные эффекты для изображений
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '0';
+                this.style.transition = 'opacity 0.5s ease';
+                
+                setTimeout(() => {
+                    this.style.opacity = '1';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
