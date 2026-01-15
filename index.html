@@ -2031,6 +2031,59 @@
             from, to { border-color: transparent }
             50% { border-color: var(--secondary) }
         }
+
+        .booking-section {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.section-subtitle {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    opacity: 0.85;
+}
+
+.booking-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.booking-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px;
+    padding: 40px 30px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.booking-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.booking-card.highlighted {
+    border-color: rgba(255,204,51,0.6);
+}
+
+.booking-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #ffcc33;
+}
+
+.booking-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px;
+}
+
+.booking-card ul li {
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
     </style>
 </head>
 <body>
@@ -2265,41 +2318,76 @@
         </section>
 
         <!-- Бронирование -->
-        <section class="booking" id="booking">
-            <div class="container">
-                <div class="booking-content">
-                    <div class="booking-text reveal">
-                        <h2 class="section-title">Готовы <span class="highlight">присоединиться?</span></h2>
-                        <p>Забронируйте стол для игры или запишитесь на ближайшее мероприятие. Мы поможем подобрать игру по вашему вкусу и настроению.</p>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <h4>Часы работы</h4>
-                                    <p>Пн-Чт: 16:00-23:00</p>
-                                    <p>Пт-Вс: 14:00-01:00</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <h4>Телефон для брони</h4>
-                                    <p>+7 (XXX) XXX-XX-XX</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="booking-cta reveal">
-                        <h3>Запись через Google Формы</h3>
-                        <p>Для бронирования стола или записи на мероприятие используйте нашу Google Форму. Заполните её, и мы свяжемся с вами для подтверждения.</p>
-                        <a href="https://forms.google.com" target="_blank" class="btn btn-primary btn-block glow-effect">
-                            <i class="fab fa-google"></i> Перейти к форме записи
-                        </a>
-                        <p style="font-size: 0.9rem; margin-top: 20px; color: var(--text-light);">Форма откроется в новом окне</p>
-                    </div>
+    <section id="booking" class="booking-section">
+    <div class="container">
+
+        <h2 class="section-title">
+            Запись на игры
+        </h2>
+
+        <p class="section-subtitle">
+            Выберите удобный формат участия — для постоянной игры
+            или для разового приключения.
+        </p>
+
+        <div class="booking-options">
+
+            <!-- Абонементы -->
+            <div class="booking-card">
+                <div class="booking-icon">
+                    <i class="fa-solid fa-ticket"></i>
                 </div>
+
+                <h3>Абонементы</h3>
+
+                <p>
+                    Лучший выбор для тех, кто хочет играть регулярно,
+                    развивать персонажа и быть частью кампании.
+                </p>
+
+                <ul>
+                    <li>✔ Выгоднее по цене</li>
+                    <li>✔ Закреплённое место</li>
+                    <li>✔ Постоянный мастер</li>
+                </ul>
+
+                <a href="https://gzqsp.tb.ru/page2"
+                   target="_blank"
+                   class="btn btn-primary glow-effect">
+                    Выбрать абонемент
+                </a>
             </div>
-        </section>
+
+            <!-- Единичные игры -->
+            <div class="booking-card highlighted">
+                <div class="booking-icon">
+                    <i class="fa-solid fa-dice-d20"></i>
+                </div>
+
+                <h3>Единичные игры</h3>
+
+                <p>
+                    Отлично подойдёт, если вы хотите попробовать формат
+                    или прийти на отдельную игру.
+                </p>
+
+                <ul>
+                    <li>✔ Без обязательств</li>
+                    <li>✔ Подходит новичкам</li>
+                    <li>✔ Разные мастера и жанры</li>
+                </ul>
+
+                <a href="https://gzqsp.tb.ru/page4"
+                   target="_blank"
+                   class="btn btn-secondary glow-effect">
+                    Записаться на игру
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 
         <!-- Контакты -->
         <section class="contacts" id="contacts">
